@@ -22,7 +22,7 @@ const ContractorAcceptPurchase = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
-    } catch (err) {
+    } catch  {
       setError('Invalid token. Please log in again.');
     }
   }, []);
@@ -41,9 +41,9 @@ const ContractorAcceptPurchase = () => {
         }
       );
       setTdsList(response.data.data || []);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch PM-approved TDS');
-      console.error(err);
+    } catch {
+      setError( 'Failed to fetch PM-approved TDS');
+      
     } finally {
       setIsLoading(false);
     }
@@ -96,9 +96,9 @@ const ContractorAcceptPurchase = () => {
       setSelectedTds(null);
       setOrderConfirmation(null);
       setLrCopy(null);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to finalize purchase');
-      console.error(err);
+    } catch  {
+      setError( 'Failed to finalize purchase');
+      
     } finally {
       setIsLoading(false);
     }

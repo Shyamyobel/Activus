@@ -19,7 +19,7 @@ const FullyApprovedTDSPage = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
-    } catch (err) {
+    } catch {
       setError('Invalid token. Please log in again.');
     }
   }, []);
@@ -38,9 +38,9 @@ const FullyApprovedTDSPage = () => {
         }
       );
       setTdsList(response.data.data || []);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Error fetching Fully Approved TDS data');
-      console.error(err);
+    } catch  {
+      setError( 'Error fetching Fully Approved TDS data');
+      
     } finally {
       setIsLoading(false);
     }

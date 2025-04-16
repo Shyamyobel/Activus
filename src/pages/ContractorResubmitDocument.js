@@ -21,7 +21,7 @@ const ContractorResubmitDocument = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.username || decodedToken.sub);
-    } catch (err) {
+    } catch {
       setError('Invalid token. Please log in again.');
     }
   }, [token]);
@@ -51,9 +51,9 @@ const ContractorResubmitDocument = () => {
       setKeepExisting(initialKeepExisting);
       setSelectedFiles(initialSelectedFiles);
       setDocumentsToRemove({});
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch rejected documents');
-      console.error(err);
+    } catch  {
+      setError('Failed to fetch rejected documents');
+     
     } finally {
       setIsLoading(false);
     }
@@ -149,9 +149,9 @@ const ContractorResubmitDocument = () => {
       
       setSuccess('Document resubmitted successfully!');
       fetchRejectedTDS();
-    } catch (err) {
-      setError(err.response?.data?.message || 'Error resubmitting document');
-      console.error(err);
+    } catch {
+      setError( 'Error resubmitting document');
+      
     } finally {
       setIsLoading(false);
     }

@@ -20,7 +20,7 @@ const TDSPage = () => {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
       setRole(decodedToken.role);
-    } catch (err) {
+    } catch  {
       setError('Invalid token. Please log in again.');
     }
   }, []);
@@ -57,8 +57,8 @@ const TDSPage = () => {
       });
 
       setTdsList(response.data.data || []);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch TDS data');
+    } catch {
+      setError( 'Failed to fetch TDS data');
     } finally {
       setIsLoading(false);
     }
@@ -101,8 +101,8 @@ const TDSPage = () => {
 
       setSuccess('Action completed successfully!');
       setTdsList(tdsList.filter(tds => tds.tdsId !== tdsId));
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to process approval');
+    } catch  {
+      setError( 'Failed to process approval');
     } finally {
       setIsLoading(false);
     }

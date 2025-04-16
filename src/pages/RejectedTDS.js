@@ -26,7 +26,7 @@ const RejectedTDS = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
-    } catch (err) {
+    } catch {
       setError('Invalid token. Please log in again.');
     }
   }, []);

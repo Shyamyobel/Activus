@@ -39,9 +39,9 @@ const CreateTDS = () => {
         } else {
           setError('No projects assigned to you as SME. Please contact your administrator.');
         }
-      } catch (err) {
-        console.error('Failed to fetch projects:', err);
-        setError(err.response?.data?.message || 'Unable to load projects. Please try again.');
+      } catch  {
+        console.error('Failed to fetch projects:', );
+        setError('Unable to load projects. Please try again.');
       } finally {
         setIsLoading(false);
       }
@@ -109,9 +109,9 @@ const CreateTDS = () => {
       setTdsName('');
       setFiles([]);
       setProjectId('');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to create TDS. Please try again.');
-      console.error(err);
+    } catch  {
+      setError( 'Failed to create TDS. Please try again.');
+  
     } finally {
       setIsLoading(false);
     }

@@ -41,8 +41,8 @@ const L1ProjectUserUpdate = () => {
         }
       );
       setProjects(response.data.data || []);
-    } catch (err) {
-      console.error('Error fetching projects:', err);
+    } catch {
+      console.error('Error fetching projects:');
       setError('Failed to load projects. Please try again.');
     }
   };
@@ -59,8 +59,8 @@ const L1ProjectUserUpdate = () => {
         }
       );
       setAvailableUsers(response.data.data || []);
-    } catch (err) {
-      console.error('Error fetching users:', err);
+    } catch {
+      console.error('Error fetching users:');
     }
   };
 
@@ -156,11 +156,9 @@ const L1ProjectUserUpdate = () => {
 
       setTimeout(() => setSelectedProject(null), 1500);
 
-    } catch (err) {
-      console.error('Update error:', err.response?.data || err.message);
+    } catch  {
+      console.error('Update error:');
       setError(
-        err.response?.data?.message ||
-        err.message ||
         'Failed to update team. Please try again.'
       );
     } finally {

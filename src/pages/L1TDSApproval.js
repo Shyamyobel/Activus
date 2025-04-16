@@ -19,7 +19,7 @@ const L1TDSApproval = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
-    } catch (err) {
+    } catch  {
       setError('Invalid token. Please log in again.');
     }
   }, []);
@@ -38,9 +38,8 @@ const L1TDSApproval = () => {
         }
       );
       setTdsList(response.data.data || []);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch TDS for approval');
-      console.error(err);
+    } catch  {
+      setError( 'Failed to fetch TDS for approval');
     } finally {
       setIsLoading(false);
     }

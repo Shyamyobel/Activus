@@ -19,7 +19,7 @@ const ContractorFullyApprovedTDS = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
-    } catch (err) {
+    } catch  {
       setError('Invalid token. Please log in again.');
     }
   }, []);
@@ -38,9 +38,8 @@ const ContractorFullyApprovedTDS = () => {
         }
       );
       setTdsList(response.data.data || []);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch approved TDS');
-      console.error(err);
+    } catch  {
+      setError( 'Failed to fetch approved TDS');
     } finally {
       setIsLoading(false);
     }
@@ -70,9 +69,9 @@ const ContractorFullyApprovedTDS = () => {
       setSuccess('Document uploaded to S3 successfully!');
       // Optionally refresh the list after upload
       fetchApprovedTDS();
-    } catch (err) {
-      setError(err.response?.data?.message || 'Failed to upload document to S3');
-      console.error(err);
+    } catch  {
+      setError( 'Failed to upload document to S3');
+      
     } finally {
       setIsLoading(false);
     }

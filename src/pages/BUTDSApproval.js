@@ -19,7 +19,7 @@ const BUTDSApproval = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
-    } catch (err) {
+    } catch {
       setError("Invalid token. Please log in again.");
     }
   }, []);
@@ -38,9 +38,8 @@ const BUTDSApproval = () => {
         }
       );
       setTdsList(response.data.data || []);
-    } catch (err) {
-      setError(err.response?.data?.message || "Error fetching TDS for approval");
-      console.error(err);
+    } catch  {
+      setError("Error fetching TDS for approval");
     } finally {
       setIsLoading(false);
     }
@@ -72,9 +71,8 @@ const BUTDSApproval = () => {
 
       setSuccess(isApproved ? "TDS approved successfully!" : "TDS rejected successfully!");
       setTdsList(tdsList.filter((tds) => tds.tdsId !== tdsId));
-    } catch (err) {
-      setError(err.response?.data?.message || "Error processing the action");
-      console.error(err);
+    } catch  {
+      setError("Error processing the action");
     } finally {
       setIsLoading(false);
     }

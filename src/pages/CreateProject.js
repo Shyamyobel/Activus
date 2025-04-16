@@ -37,9 +37,9 @@ const CreateProject = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setApprovedUsers(response.data.data || []);
-      } catch (err) {
-        console.error('Failed to fetch approved users:', err);
-        setError(err.response?.data?.message || 'Unable to load users. Please try again.');
+      } catch  {
+        console.error('Failed to fetch approved users:');
+        setError( 'Unable to load users. Please try again.');
       } finally {
         setIsLoading(false);
       }
@@ -112,9 +112,9 @@ const CreateProject = () => {
       
       setSuccess('Project created successfully! Redirecting...');
       setTimeout(() => router.push('/ProjectsPage'), 1500);
-    } catch (err) {
-      console.error('Project creation failed:', err);
-      setError(err.response?.data?.message || err.message || 'Failed to create project');
+    } catch {
+      console.error('Project creation failed:');
+      setError('Failed to create project');
     } finally {
       setIsLoading(false);
     }
