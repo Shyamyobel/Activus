@@ -20,12 +20,13 @@ const TDSPage = () => {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
       setRole(decodedToken.role);
+      fetchTDSData();
     } catch  {
       setError('Invalid token. Please log in again.');
     }
   }, []);
 
-  const fetchTDSData =  useCallback(async () => {
+  const fetchTDSData = async () => {
     setIsLoading(true);
     setError('');
     const token = localStorage.getItem('token');
@@ -62,13 +63,13 @@ const TDSPage = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [token, username]);
+  };
 
-   useEffect(() => {
-     if (token && username) {
-       fetchTDSData();
-     }
-   }, [fetchTDSData]);
+  useEffect(() => {
+    if (role && username) {
+      fetchTDSData();
+    }
+  }, [role, username]);
 
   const handleApproval = async (tdsId, isApproved) => {
     setIsLoading(true);

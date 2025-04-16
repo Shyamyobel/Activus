@@ -19,12 +19,13 @@ const BUTDSApproval = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
+      fetchTDSData();
     } catch {
       setError("Invalid token. Please log in again.");
     }
   }, []);
 
-  const fetchTDSData = useCallback(async () => {
+  const fetchTDSData = async () => {
     setIsLoading(true);
     setError("");
     setSuccess("");
@@ -38,19 +39,18 @@ const BUTDSApproval = () => {
         }
       );
       setTdsList(response.data.data || []);
-    } catch (error) {
-      console.error("Error fetching TDS for approval:", error);
-      setError(error.response?.data?.message || "Error fetching TDS for approval");
+    } catch  {
+      setError("Error fetching TDS for approval");
     } finally {
       setIsLoading(false);
     }
-  }, [token, username]);
+  };
 
   useEffect(() => {
     if (token && username) {
       fetchTDSData();
     }
-  }, [fetchTDSData]);
+  }, [token, username]);
 
   const handleApproval = async (tdsId, isApproved) => {
     setIsLoading(true);
@@ -70,6 +70,7 @@ const BUTDSApproval = () => {
         }
       );
       console.log(response.data);
+      
 
       setSuccess(isApproved ? "TDS approved successfully!" : "TDS rejected successfully!");
       setTdsList(tdsList.filter((tds) => tds.tdsId !== tdsId));

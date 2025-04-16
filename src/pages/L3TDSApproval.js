@@ -19,12 +19,13 @@ const L3TDSApproval = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
+      fetchTDSData();
     } catch  {
       setError('Invalid token. Please log in again.');
     }
   }, []);
 
-  const fetchTDSData = useCallback( async () => {
+  const fetchTDSData = async () => {
     setIsLoading(true);
     setError('');
     setSuccess('');
@@ -44,13 +45,13 @@ const L3TDSApproval = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [token, username]);
+  };
 
-    useEffect(() => {
-      if (token && username) {
-        fetchTDSData();
-      }
-    }, [fetchTDSData]);
+  useEffect(() => {
+    if (token && username) {
+      fetchTDSData();
+    }
+  }, [token, username]);
 
   const handleApproval = async (tdsId, isApproved) => {
     setIsLoading(true);
