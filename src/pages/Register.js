@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -91,9 +92,9 @@ const Register = () => {
           {/* Login Link */}
           <p style={styles.text}>
             Already a member?{' '}
-            <a href="/login" style={styles.link}>
-              Login now
-            </a>
+            <Link href="/login" passHref>
+  <a style={styles.link}>Login now</a>
+</Link>
           </p>
         </form>
       </div>
