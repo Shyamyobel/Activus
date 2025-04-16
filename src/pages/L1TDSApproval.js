@@ -24,7 +24,7 @@ const L1TDSApproval = () => {
     }
   }, []);
 
-  const fetchTDSData = async () => {
+  const fetchTDSData = useCallback(async () => {
     setIsLoading(true);
     setError('');
     setSuccess('');
@@ -43,13 +43,13 @@ const L1TDSApproval = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [token, username]);
 
   useEffect(() => {
     if (token && username) {
       fetchTDSData();
     }
-  }, [token, username]);
+  }, [fetchTDSData]);
 
   const handleApproval = async (tdsId, isApproved) => {
     setIsLoading(true);

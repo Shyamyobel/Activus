@@ -25,7 +25,7 @@ const TDSPage = () => {
     }
   }, []);
 
-  const fetchTDSData = async () => {
+  const fetchTDSData =  useCallback(async () => {
     setIsLoading(true);
     setError('');
     const token = localStorage.getItem('token');
@@ -62,13 +62,13 @@ const TDSPage = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [token, username]);
 
-  useEffect(() => {
-    if (role && username) {
-      fetchTDSData();
-    }
-  }, [role, username]);
+   useEffect(() => {
+     if (token && username) {
+       fetchTDSData();
+     }
+   }, [fetchTDSData]);
 
   const handleApproval = async (tdsId, isApproved) => {
     setIsLoading(true);

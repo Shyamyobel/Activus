@@ -24,7 +24,7 @@ const BUTDSApproval = () => {
     }
   }, []);
 
-  const fetchTDSData = async () => {
+  const fetchTDSData = useCallback(async () => {
     setIsLoading(true);
     setError("");
     setSuccess("");
@@ -38,18 +38,19 @@ const BUTDSApproval = () => {
         }
       );
       setTdsList(response.data.data || []);
-    } catch  {
-      setError("Error fetching TDS for approval");
+    } catch (error) {
+      console.error("Error fetching TDS for approval:", error);
+      setError(error.response?.data?.message || "Error fetching TDS for approval");
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [token, username]);
 
   useEffect(() => {
     if (token && username) {
       fetchTDSData();
     }
-  }, [token, username]);
+  }, [fetchTDSData]);
 
   const handleApproval = async (tdsId, isApproved) => {
     setIsLoading(true);
