@@ -177,8 +177,7 @@ const ContractorResubmitDocument = () => {
         const fileUrl = URL.createObjectURL(blob);
         window.open(fileUrl, '_blank');
       })
-      .catch(err => {
-        console.error('Error viewing document:', err);
+      .catch(()=> {
         setError('Failed to view document. Please try again.');
       });
   };

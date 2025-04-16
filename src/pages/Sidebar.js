@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from 'next/image';
 import {
   FaFileAlt,
   FaCheckCircle,
@@ -93,12 +94,12 @@ const Sidebar = ({ role }) => {
             height: "70px",
           }}
         >
-          <img
+          <Image
             src="/Remove background project.png"
             alt="Logo"
+            width={40} // Specify width
+            height={40} // Specify height
             style={{
-              width: "40px",
-              height: "40px",
               objectFit: "contain",
             }}
           />

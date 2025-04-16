@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { jwtDecode } from "jwt-decode"; // Ensure jwt-decode is installed (npm install jwt-decode)
 
 const Login = () => {
@@ -9,11 +10,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // Track form submission state
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setIsSubmitting(true); // Disable button while submitting
 
     const url = isLogin
       ? "http://localhost:8080/api/auth/login"
@@ -23,6 +26,12 @@ const Login = () => {
       : { username, password, emailId: email, role };
 
     try {
+      if (!username || !password || (isLogin && !role)) {
+        setError("Please fill in all fields.");
+        setIsSubmitting(false);
+        return;
+      }
+
       console.log("Sending request to URL:", url);
       console.log("Payload:", payload);
 
@@ -84,6 +93,8 @@ const Login = () => {
     } catch (err) {
       console.error("Error during login/signup:", err);
       setError(err.message);
+    } finally {
+      setIsSubmitting(false); // Re-enable button after submission
     }
   };
 
@@ -118,6 +129,10 @@ const Login = () => {
         background: "linear-gradient(to right, #066E75, #159D8B)",
         transform: "translateY(-2px)",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+      },
+      "&:disabled": {
+        background: "#D1D5DB",
+        cursor: "not-allowed",
       },
     },
   };
@@ -202,13 +217,15 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             style={styles.input}
           />
-          <input
-            type="text"
-            placeholder="Role (e.g., PM, SME, etc.)"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            style={styles.input}
-          />
+          {isLogin && (
+            <input
+              type="text"
+              placeholder="Role (e.g., PM, SME, etc.)"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              style={styles.input}
+            />
+          )}
           {!isLogin && (
             <input
               type="email"
@@ -231,19 +248,18 @@ const Login = () => {
               Forgot password?
             </a>
           )}
-          <button type="submit" style={styles.button}>
+          <button type="submit" style={styles.button} disabled={isSubmitting}>
             {isLogin ? "Login" : "Signup"}
           </button>
         </form>
         <p style={{ marginTop: "1rem" }}>
           {isLogin ? "Not a member?" : "Already have an account?"}{" "}
-          <a
-            href="#"
-            onClick={() => setIsLogin(!isLogin)}
-            style={{ color: "#117285", fontWeight: "500" }}
-          >
-            {isLogin ? "Signup now" : "Login"}
-          </a>
+          <Link href={isLogin ? "/register" : "/login"} legacyBehavior>
+  <a style={{ color: "#117285", fontWeight: "500" }}>
+    {isLogin ? "Signup now" : "Login"}
+  </a>
+</Link>
+          
         </p>
       </div>
     </div>
