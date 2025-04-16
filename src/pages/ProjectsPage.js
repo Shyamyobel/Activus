@@ -12,7 +12,7 @@ const ProjectsPage = () => {
   useEffect(() => {
     // This code will only run on the client side
     if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('token');
+      token = localStorage.getItem('token');
       const role = localStorage.getItem('role');
       
       setToken(token);

@@ -90,6 +90,7 @@ const ContractorAcceptPurchase = () => {
           params: { username }
         }
       );
+      console.log(response.data);
 
       setSuccess('Purchase finalized successfully with documents uploaded!');
       setTdsList(tdsList.filter((tds) => tds.tdsId !== tdsId));

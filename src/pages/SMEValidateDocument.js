@@ -69,6 +69,7 @@ const SMEValidateDocument = () => {
           }
         }
       );
+      console.log(response.data);
 
       setSuccess(`Document ${isApproved ? 'approved' : 'rejected'} successfully!`);
       setTdsList(tdsList.filter((tds) => tds.tdsId !== tdsId));

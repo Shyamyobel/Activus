@@ -65,7 +65,7 @@ const L2Validation = () => {
           headers: { Authorization: `Bearer ${token}` },
           params: { username }
         }
-      );
+      );console.log(response.data);
 
       setSuccess('TDS validated successfully!');
       setTdsList(tdsList.filter((tds) => tds.tdsId !== tdsId));

@@ -67,7 +67,7 @@ const L1TDSApproval = () => {
             username 
           }
         }
-      );
+      );console.log(response.data);
 
       setSuccess(isApproved ? 'TDS approved successfully!' : 'TDS rejected successfully!');
       setTdsList(tdsList.filter((tds) => tds.tdsId !== tdsId));

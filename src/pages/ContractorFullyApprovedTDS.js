@@ -65,6 +65,7 @@ const ContractorFullyApprovedTDS = () => {
           params: { username }
         }
       );
+      console.log(response.data);
 
       setSuccess('Document uploaded to S3 successfully!');
       // Optionally refresh the list after upload

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 const CreateTDS = () => {
   const [tdsName, setTdsName] = useState('');
@@ -10,7 +10,7 @@ const CreateTDS = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(() => {
     const fetchAssignedProjects = async () => {
@@ -89,7 +89,7 @@ const CreateTDS = () => {
     formData.append('tdsDTO', JSON.stringify(tdsDTO));
     formData.append('username', username);
 
-    files.forEach((file, index) => {
+    files.forEach((file) => {
       formData.append('files', file); // backend should handle multiple files under 'files'
     });
 
@@ -104,7 +104,7 @@ const CreateTDS = () => {
             'Content-Type': 'multipart/form-data',
           },
         }
-      );
+      );console.log(response.data);
       setSuccess('TDS created successfully!');
       setTdsName('');
       setFiles([]);
