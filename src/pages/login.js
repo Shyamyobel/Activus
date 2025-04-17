@@ -19,8 +19,8 @@ const Login = () => {
     setIsSubmitting(true); // Disable button while submitting
 
     const url = isLogin
-      ? "http://localhost:8080/api/auth/login"
-      : "http://localhost:8080/api/auth/register";
+      ? "https://activus-server-production.up.railway.app/api/auth/login"
+      : "https://activus-server-production.up.railway.app/api/auth/register";
     const payload = isLogin
       ? { username, password, role }
       : { username, password, emailId: email, role };
