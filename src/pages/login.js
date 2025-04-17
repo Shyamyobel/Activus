@@ -26,7 +26,7 @@ const Login = () => {
       : { username, password, emailId: email, role };
 
     try {
-      if (!username || !password || (isLogin && !role)) {
+      if (!username || !password || !role) {
         setError("Please fill in all fields.");
         setIsSubmitting(false);
         return;
@@ -108,10 +108,6 @@ const Login = () => {
       fontSize: "14px",
       boxShadow: "inset 0 2px 4px rgba(0,0,0,0.1)",
       transition: "border-color 0.3s ease, box-shadow 0.3s ease",
-      "&:focus": {
-        borderColor: "#48C9B0",
-        boxShadow: "0 0 8px rgba(72,201,176,0.4)",
-      },
     },
     button: {
       width: "100%",
@@ -125,15 +121,6 @@ const Login = () => {
       fontWeight: "600",
       textShadow: "0 1px 2px rgba(0, 0, 0, 0.2)",
       transition: "all 0.3s ease",
-      "&:hover": {
-        background: "linear-gradient(to right, #066E75, #159D8B)",
-        transform: "translateY(-2px)",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-      },
-      "&:disabled": {
-        background: "#D1D5DB",
-        cursor: "not-allowed",
-      },
     },
   };
 
@@ -217,25 +204,40 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             style={styles.input}
           />
-          {!isLogin && (
-  <select
-    value={role}
-    onChange={(e) => setRole(e.target.value)}
-    style={styles.input}
-  >
-    <option value="" disabled>
-      Select Role
-    </option>
-    <option value="PM">PM</option>
-    <option value="SUPER_ADMIN">SUPER_ADMIN</option>
-    <option value="L2">L2</option>
-    <option value="L1">L1</option>
-    <option value="L3">L3</option>
-    <option value="BU">BU</option>
-    <option value="SME">SME</option>
-    <option value="Contractor">Contractor</option>
-  </select>
-)}
+          {/* Role dropdown shown on both login and signup */}
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "0.7rem",
+              marginBottom: "1rem",
+              border: "1px solid #D1D5DB",
+              borderRadius: "8px",
+              fontSize: "14px",
+              boxShadow: "inset 0 2px 4px rgba(0,0,0,0.1)",
+              transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+              appearance: "none",
+              WebkitAppearance: "none",
+              MozAppearance: "none",
+              backgroundColor: "white",
+              color: "#111827",
+              fontFamily: "inherit",
+            }}
+          >
+            <option value="" disabled>
+              Select Role
+            </option>
+            <option value="PM">PM</option>
+            <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+            <option value="L2">L2</option>
+            <option value="L1">L1</option>
+            <option value="L3">L3</option>
+            <option value="BU">BU</option>
+            <option value="SME">SME</option>
+            <option value="Contractor">Contractor</option>
+          </select>
+
           {!isLogin && (
             <input
               type="email"
@@ -265,11 +267,10 @@ const Login = () => {
         <p style={{ marginTop: "1rem" }}>
           {isLogin ? "Not a member?" : "Already have an account?"}{" "}
           <Link href={isLogin ? "/register" : "/login"} legacyBehavior>
-  <a style={{ color: "#117285", fontWeight: "500" }}>
-    {isLogin ? "Signup now" : "Login"}
-  </a>
-</Link>
-          
+            <a style={{ color: "#117285", fontWeight: "500" }}>
+              {isLogin ? "Signup now" : "Login"}
+            </a>
+          </Link>
         </p>
       </div>
     </div>
