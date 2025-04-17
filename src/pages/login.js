@@ -217,15 +217,25 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             style={styles.input}
           />
-          {isLogin && (
-            <input
-              type="text"
-              placeholder="Role (e.g., PM, SME, etc.)"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              style={styles.input}
-            />
-          )}
+          {!isLogin && (
+  <select
+    value={role}
+    onChange={(e) => setRole(e.target.value)}
+    style={styles.input}
+  >
+    <option value="" disabled>
+      Select Role
+    </option>
+    <option value="PM">PM</option>
+    <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+    <option value="L2">L2</option>
+    <option value="L1">L1</option>
+    <option value="L3">L3</option>
+    <option value="BU">BU</option>
+    <option value="SME">SME</option>
+    <option value="Contractor">Contractor</option>
+  </select>
+)}
           {!isLogin && (
             <input
               type="email"
