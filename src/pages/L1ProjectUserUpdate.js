@@ -32,7 +32,7 @@ const L1ProjectUserUpdate = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `http://localhost:8080/api/projects/assigned-to-user/${username}?role=L1`,
+        `https://activus-server-production.up.railway.app/api/projects/assigned-to-user/${username}?role=L1`,
         {
           headers: { 
             Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ const L1ProjectUserUpdate = () => {
   const fetchUsers = async (token) => {
     try {
       const response = await axios.get(
-        'http://localhost:8080/api/auth/approved-users',
+        'https://activus-server-production.up.railway.app/api/auth/approved-users',
         {
           headers: { 
             Authorization: `Bearer ${token}`,
@@ -121,7 +121,7 @@ const L1ProjectUserUpdate = () => {
       };
 
       const response = await axios.put(
-        `http://localhost:8080/api/projects/update/${selectedProject.projectId}`,
+        `https://activus-server-production.up.railway.app/api/projects/update/${selectedProject.projectId}`,
         payload,
         {
           headers: { 

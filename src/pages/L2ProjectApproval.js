@@ -14,7 +14,7 @@ const L2ProjectApproval = () => {
     }
 
     axios
-      .get('http://localhost:8080/api/projects/l2-validation', {
+      .get('https://activus-server-production.up.railway.app/api/projects/l2-validation', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -35,7 +35,7 @@ const L2ProjectApproval = () => {
 
     axios
       .put(
-        `http://localhost:8080/api/projects/review/${projectId}?isApproved=${isApproved}`,
+        `https://activus-server-production.up.railway.app/api/projects/review/${projectId}?isApproved=${isApproved}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -33,7 +33,7 @@ const ContractorResubmitDocument = () => {
     
     try {
       const response = await axios.get(
-        'http://localhost:8080/api/tds/rejectedBySME',
+        'https://activus-server-production.up.railway.app/api/tds/rejectedBySME',
         {
           headers: { Authorization: `Bearer ${token}` },
           params: { username }
@@ -132,7 +132,7 @@ const ContractorResubmitDocument = () => {
 
     try {
       await axios.post(
-        `http://localhost:8080/api/tds/reupload/${tdsId}`,
+        `https://activus-server-production.up.railway.app/api/tds/reupload/${tdsId}`,
         formData,
         {
           headers: { 
@@ -164,7 +164,7 @@ const ContractorResubmitDocument = () => {
     }
 
     const fileName = documentPath.split(/[\\/]/).pop();
-    const downloadUrl = `http://localhost:8080/api/tds/download/${fileName}`;
+    const downloadUrl = `https://activus-server-production.up.railway.app/api/tds/download/${fileName}`;
 
     fetch(downloadUrl, {
       headers: { Authorization: `Bearer ${token}` }

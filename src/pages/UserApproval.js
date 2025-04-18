@@ -17,7 +17,7 @@ const UserApproval = () => {
     }
 
     axios
-      .get("http://localhost:8080/api/superadmin/pending-users", {
+      .get("https://activus-server-production.up.railway.app/api/superadmin/pending-users", {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -38,7 +38,7 @@ const UserApproval = () => {
 
     axios
       .post(
-        "http://localhost:8080/api/superadmin/approve-user",
+        "https://activus-server-production.up.railway.app/api/superadmin/approve-user",
         { userId, approve: isApproved },
         {
           headers: { Authorization: `Bearer ${token}` },

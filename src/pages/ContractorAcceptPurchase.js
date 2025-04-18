@@ -34,7 +34,7 @@ const ContractorAcceptPurchase = () => {
     
     try {
       const response = await axios.get(
-        'http://localhost:8080/api/tds/pmApproved',
+        'https://activus-server-production.up.railway.app/api/tds/pmApproved',
         {
           headers: { Authorization: `Bearer ${token}` },
           params: { username }
@@ -80,7 +80,7 @@ const ContractorAcceptPurchase = () => {
       formData.append('lrCopy', lrCopy);
 
       const response = await axios.post(
-        `http://localhost:8080/api/tds/finalizePurchase/${tdsId}`,
+        `https://activus-server-production.up.railway.app/api/tds/finalizePurchase/${tdsId}`,
         formData,
         {
           headers: { 
@@ -117,7 +117,7 @@ const ContractorAcceptPurchase = () => {
       return;
     }
 
-    const downloadUrl = `http://localhost:8080/api/tds/download/${fileName}`;
+    const downloadUrl = `https://activus-server-production.up.railway.app/api/tds/download/${fileName}`;
     const token = localStorage.getItem('token');
     
     if (!token) {

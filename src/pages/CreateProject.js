@@ -33,7 +33,7 @@ const CreateProject = () => {
           return;
         }
         
-        const response = await axios.get('http://localhost:8080/api/auth/approved-users', {
+        const response = await axios.get('https://activus-server-production.up.railway.app/api/auth/approved-users', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setApprovedUsers(response.data.data || []);
@@ -101,7 +101,7 @@ const CreateProject = () => {
         return;
       }
 
-      await axios.post('http://localhost:8080/api/projects/create', {
+      await axios.post('https://activus-server-production.up.railway.app/api/projects/create', {
         projectName: formData.projectName,
         projectDescription: formData.projectDescription,
         stakeholderId: roleAssignments.Stakeholder[0],

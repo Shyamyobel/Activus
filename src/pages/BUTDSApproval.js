@@ -32,7 +32,7 @@ const BUTDSApproval = () => {
     
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/tds/need-to-approve/bu",
+        "https://activus-server-production.up.railway.app/api/tds/need-to-approve/bu",
         {
           headers: { Authorization: `Bearer ${token}` },
           params: { username }
@@ -59,7 +59,7 @@ const BUTDSApproval = () => {
     
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/tds/approve/bu/${tdsId}`,
+        `https://activus-server-production.up.railway.app/api/tds/approve/bu/${tdsId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -93,7 +93,7 @@ const BUTDSApproval = () => {
       return;
     }
 
-    const downloadUrl = `http://localhost:8080/api/tds/download/${fileName}`;
+    const downloadUrl = `https://activus-server-production.up.railway.app/api/tds/download/${fileName}`;
     const token = localStorage.getItem("token");
     
     if (!token) {

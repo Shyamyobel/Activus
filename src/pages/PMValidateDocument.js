@@ -32,7 +32,7 @@ const PMValidateDocument = () => {
     
     try {
       const response = await axios.get(
-        'http://localhost:8080/api/tds/pendingPMValidation',
+        'https://activus-server-production.up.railway.app/api/tds/pendingPMValidation',
         {
           headers: { Authorization: `Bearer ${token}` },
           params: { username }
@@ -60,7 +60,7 @@ const PMValidateDocument = () => {
     
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/tds/validateDocumentByPM/${tdsId}`,
+        `https://activus-server-production.up.railway.app/api/tds/validateDocumentByPM/${tdsId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -93,7 +93,7 @@ const PMValidateDocument = () => {
       return;
     }
 
-    const downloadUrl = `http://localhost:8080/api/tds/download/${fileName}`;
+    const downloadUrl = `https://activus-server-production.up.railway.app/api/tds/download/${fileName}`;
     const token = localStorage.getItem('token');
     
     if (!token) {

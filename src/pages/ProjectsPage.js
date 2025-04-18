@@ -24,7 +24,7 @@ const ProjectsPage = () => {
       }
 
       axios
-        .get('http://localhost:8080/api/projects/all', {
+        .get('https://activus-server-production.up.railway.app/api/projects/all', {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {

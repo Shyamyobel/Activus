@@ -38,7 +38,7 @@ const RejectedTDS = () => {
     
     try {
       const response = await axios.get(
-        'http://localhost:8080/api/tds/need-to-recheck',
+        'https://activus-server-production.up.railway.app/api/tds/need-to-recheck',
         {
           headers: { Authorization: `Bearer ${token}` },
           params: { username }
@@ -71,7 +71,7 @@ const RejectedTDS = () => {
       return;
     }
 
-    const downloadUrl = `http://localhost:8080/api/tds/download/${fileName}`;
+    const downloadUrl = `https://activus-server-production.up.railway.app/api/tds/download/${fileName}`;
     const token = localStorage.getItem('token');
     
     if (!token) {
@@ -172,7 +172,7 @@ const RejectedTDS = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/tds/recheck/${recheckData.tdsId}`,
+        `https://activus-server-production.up.railway.app/api/tds/recheck/${recheckData.tdsId}`,
         formData,
         {
           headers: {
