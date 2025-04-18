@@ -235,6 +235,7 @@ const Login = () => {
             <option value="L3">L3</option>
             <option value="BU">BU</option>
             <option value="SME">SME</option>
+            <option value="Stakeholder">Stakeholder</option>
             <option value="Contractor">Contractor</option>
           </select>
 
