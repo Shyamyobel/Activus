@@ -46,6 +46,7 @@ const Sidebar = ({ role }) => {
       { name: "Fully Approved TDS", path: "/ContractorFullyApprovedTDS", icon: <FaCheckCircle /> },
       { name: "Resubmit Documents", path: "/ContractorResubmitDocument", icon: <FaFileUpload /> },
       { name: "Accept Purchase", path: "/ContractorAcceptPurchase", icon: <FaShoppingCart /> },
+      { name: "S3 Documents", path: "/S3DocumentsList", icon: <FaCloud /> },
     ],
     SUPER_ADMIN: [
       { name: "User Approval", path: "/UserApproval", icon: <FaUsers /> },
