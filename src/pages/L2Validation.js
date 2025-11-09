@@ -19,11 +19,16 @@ const L2Validation = () => {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
       setUsername(decodedToken.sub);
-      fetchTDSData();
+      // fetchTDSData();
     } catch {
       setError('Invalid token. Please log in again.');
     }
   }, []);
+useEffect(() => {
+        if (token && username) {
+            fetchTDSData();
+        }
+    }, [token, username]);
 
   const fetchTDSData = async () => {
     setIsLoading(true);
